@@ -20,23 +20,39 @@ public class init_test {
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//maximize window
 		//driver.manage().window().maximize();
+		//TODO make functions to centralize usual behaviors
 		
-		//open browser with desried URL
-		//driver.get("https://gateway.after.eu.airbus.corp/tsas-val/plot/ui/canvas");
-		driver.get("https://getbootstrap.com/");
-		driver.findElement(By.linkText("Get started")).click();
-		//driver.findElement(By.className("bd-sidebar")).click();
-		WebElement search =  driver.findElement(By.id("search-input"));
-		search.sendKeys("dropdowns");
-		search.sendKeys(Keys.DOWN);
-		search.sendKeys(Keys.ENTER);
+		//open browser and open the TSAS interface 
+		driver.get("https://gateway.after.eu.airbus.corp/tsas-val/plot/ui/canvas");
+		driver.findElement(By.linkText("Create a canvas")).click();
+		//WebElement search =  driver.findElement(By.id("Create a canvas"));
+		//search.sendKeys("dropdowns");
+		//search.sendKeys(Keys.DOWN);
+		//search.sendKeys(Keys.ENTER);
 		
-		//driver.findElement(By.linkText("Dropdown button")).click();
-		WebElement dropdown =  driver.findElement(By.id("dropdownMenuButton1"));
-		dropdown.sendKeys(Keys.ENTER);
+		driver.findElement(By.linkText("Choose your category")).click();
+		driver.findElement(By.linkText("PROD")).click();
 		
-		Select select = new Select(dropdown);
-		select.deselectByIndex(2);
+		driver.findElement(By.linkText("Choose your A/C type")).click();
+		driver.findElement(By.linkText("A320")).click();
+		
+		driver.findElement(By.linkText("Choose your Aircraft")).click();
+		driver.findElement(By.id("msnSearch")).click();
+		WebElement msn = driver.findElement(By.id("msnSearch"));
+		msn.sendKeys("F10543");
+		driver.findElement(By.linkText("F10543")).click();
+		driver.findElement(By.id("search-btn")).click();
+		
+		driver.findElement(By.id("testTypes")).click();
+		
+		
+		
+		
+		//WebElement dropdown =  driver.findElement(By.id("dropdownMenuButton1"));
+		//dropdown.sendKeys(Keys.ENTER);
+		
+		//Select select = new Select(dropdown);
+		//select.deselectByIndex(2);
 		
 		//dropdown.findElement(By.linkText("Another action")).click();
 		//driver.findElement(By.name("Get started")).click();
