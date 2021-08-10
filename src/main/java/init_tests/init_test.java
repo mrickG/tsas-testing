@@ -1,5 +1,8 @@
 package init_tests;
 
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -18,8 +21,9 @@ public class init_test {
 	
 	public void test1() {
 		//setting the driver executable
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\agales\\eclipse-workspace\\test-1\\src\\main\\resources\\chromedriver.exe");
 		
+		String useDir = FileSystems.getDefault().getPath("").toAbsolutePath().toString();
+		System.setProperty("webdriver.chrome.driver", useDir + "\\src\\main\\resources\\chromedriver.exe");
 		//Initiating your chromedriver
 		WebDriver driver = new ChromeDriver();
 		
@@ -31,16 +35,24 @@ public class init_test {
 		
 		//open browser and open the TSAS interface
 		//ByAngular.buttonText("cLiCk mE");
-
 		
 		//driver.get("https://gateway.after.eu.airbus.corp/tsas-val/plot/ui/canvas");
-		driver.get("https://voice.google.com/u/0/about");
+		//driver.get("https://voice.google.com/u/0/about");
 		//ByAngular.buttonText("For personal use");
 		//ByAngular.buttonText("Create a canvas");
 		//driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/button/span"));
+		
+		//Clicking the Create a Canvas 
 		WebElement button = driver.findElement(By.xpath("/html/body/app-root/app-canva/div/div/button"));
 		button.click();
-		//driver.findElement(By.className("mat-button-wrapper")).click();
+		
+		//Select select = new Select(driver.findElement(By.xpath("/html/body/app-root/app-canva/div/div/button")));
+		//select.selectByVisibleText("PROD");
+		
+		//Select PROD into the dropdown place 
+		Select dropdown = new Select(driver.findElement(By.xpath("/html/body/div[2]/div/div/div//mat-option[3]/span")));
+	    dropdown.selectByIndex(2);
+	    
 		
 		//driver.findElement(By.linkText("Choose your A/C type")).click();
 		//driver.findElement(By.linkText("A320")).click();
