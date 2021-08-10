@@ -1,5 +1,7 @@
 package init_tests;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
@@ -16,13 +18,13 @@ public class init_test {
 	
 	public void test1() {
 		//setting the driver executable
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\agales\\Desktop\\TSAS\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\agales\\eclipse-workspace\\test-1\\src\\main\\resources\\chromedriver.exe");
 		
 		//Initiating your chromedriver
 		WebDriver driver = new ChromeDriver();
 		
 		//Applied wait time
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//maximize window
 		//driver.manage().window().maximize();
 		//TODO make functions to centralize usual behaviors
@@ -35,8 +37,10 @@ public class init_test {
 		driver.get("https://voice.google.com/u/0/about");
 		//ByAngular.buttonText("For personal use");
 		//ByAngular.buttonText("Create a canvas");
-		//driver.findElement(By.linkText("For personal use")).click();
-		driver.findElement(By.className("mat-button-wrapper")).click();
+		//driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/button/span"));
+		WebElement button = driver.findElement(By.xpath("/html/body/app-root/app-canva/div/div/button"));
+		button.click();
+		//driver.findElement(By.className("mat-button-wrapper")).click();
 		
 		//driver.findElement(By.linkText("Choose your A/C type")).click();
 		//driver.findElement(By.linkText("A320")).click();
