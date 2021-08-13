@@ -24,6 +24,7 @@ public class init_test {
 		
 		String useDir = FileSystems.getDefault().getPath("").toAbsolutePath().toString();
 		System.setProperty("webdriver.chrome.driver", useDir + "\\src\\main\\resources\\chromedriver.exe");
+		
 		//Initiating your chromedriver
 		WebDriver driver = new ChromeDriver();
 		
@@ -36,31 +37,42 @@ public class init_test {
 		//open browser and open the TSAS interface
 		//ByAngular.buttonText("cLiCk mE");
 		
-		//driver.get("https://gateway.after.eu.airbus.corp/tsas-val/plot/ui/canvas");
-		//driver.get("https://voice.google.com/u/0/about");
-		//ByAngular.buttonText("For personal use");
-		//ByAngular.buttonText("Create a canvas");
+		//Accessing the tsas url
+		driver.get("https://gateway.after.eu.airbus.corp/tsas-val/plot/ui/canvas");
 		//driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/button/span"));
 		
-		//Clicking the Create a Canvas 
-		WebElement button = driver.findElement(By.xpath("/html/body/app-root/app-canva/div/div/button"));
-		button.click();
+		//Clicking the "Create a Canvas" button
+		//WebElement button = driver.findElement(By.xpath("/html/body/app-root/app-canva/div/div/button"));
+		WebElement canvasButton = driver.findElement(By.xpath("/html/body/main/div/div/div/div[1]/div/div[1]/section/section[4]/div[1]/div[1]/section[1]/button"));
+		canvasButton.click();
 		
-		//Select select = new Select(driver.findElement(By.xpath("/html/body/app-root/app-canva/div/div/button")));
-		//select.selectByVisibleText("PROD");
+		//Accessing the Category and selecting PROD
+		Select categoryDropdown = new Select(driver.findElement(By.xpath("/html/body/app-root/app-canva/div/div/button")));
+		categoryDropdown.selectByVisibleText("PROD");
 		
-		//Select PROD into the dropdown place 
+		//Selecting a/c type 
 		Select dropdown = new Select(driver.findElement(By.xpath("/html/body/div[2]/div/div/div//mat-option[3]/span")));
 	    dropdown.selectByIndex(2);
 	    
+	    //Selecting a/c type alternative
+	    //driver.findElement(By.linkText("Choose your A/C type")).click();
+  		//driver.findElement(By.linkText("A320")).click();
+	    
+		//Focus and filling the a/c MSN search 
+		WebElement msn = driver.findElement(By.id("msnSearch"));
+		msn.sendKeys("F10543");
+		msn.sendKeys(Keys.ENTER);
 		
-		//driver.findElement(By.linkText("Choose your A/C type")).click();
-		//driver.findElement(By.linkText("A320")).click();
-		
+		//Focus and filling the a/c MSN search alternative1
 		//driver.findElement(By.linkText("Choose your Aircraft")).click();
 		//driver.findElement(By.id("msnSearch")).click();
 		//WebElement msn = driver.findElement(By.id("msnSearch"));
 		//msn.sendKeys("F10543");
+		
+		//Focus and filling the a/c MSN search alternative
+		//WebElement aircrafttypeDropdown = driver.findElement(By.xpath("/html/body/main/div/div/div/div[1]/div/div[1]/section/section[4]/div[1]/div[1]/section[1]/button"));
+		//aircrafttypeDropdown.click();
+		
 		//driver.findElement(By.linkText("F10543")).click();
 		//driver.findElement(By.id("search-btn")).click();
 		
